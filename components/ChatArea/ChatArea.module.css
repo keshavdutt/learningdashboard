@@ -97,3 +97,260 @@
   .sendToNotesButton:hover {
     background-color: #45a049;
   }
+
+
+/* markdown styles */
+
+/* Container for Markdown-styled content */
+.markdown {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  color: #333;
+}
+
+/* Headings */
+.markdown h1 {
+  font-size: 2em;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+  font-weight: bold;
+}
+
+.markdown h2 {
+  font-size: 1.75em;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+  font-weight: bold;
+}
+
+.markdown h3 {
+  font-size: 1.5em;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+  font-weight: bold;
+}
+
+.markdown h4, .markdown h5, .markdown h6 {
+  font-size: 1.25em;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+  font-weight: bold;
+}
+
+/* Paragraphs */
+.markdown p {
+  margin: 0.5em 0;
+}
+
+/* Blockquotes */
+.markdown blockquote {
+  margin: 1em 0;
+  padding: 0.5em 1em;
+  background-color: #f9f9f9;
+  border-left: 4px solid #ccc;
+  color: #555;
+}
+
+/* Lists */
+.markdown ul {
+  list-style-type: disc;
+  padding-left: 1.5em;
+}
+
+.markdown ol {
+  list-style-type: decimal;
+  padding-left: 1.5em;
+}
+
+.markdown li {
+  margin-bottom: 0.5em;
+}
+
+/* Code */
+/* .markdown code {
+  font-family: monospace;
+  background-color: #f4f4f4;
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+}
+
+.markdown pre {
+  background-color: #f4f4f4;
+  padding: 1em;
+  overflow-x: auto;
+  border-radius: 5px;
+  font-family: monospace;
+  font-size: 0.9em;
+} */
+
+/* Links */
+.markdown a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.markdown a:hover {
+  text-decoration: underline;
+}
+
+/* Images */
+.markdown img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  margin: 1em 0;
+}
+
+/* Tables */
+.markdown table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1em 0;
+}
+
+.markdown th,
+.markdown td {
+  border: 1px solid #ddd;
+  padding: 0.5em;
+}
+
+.markdown th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+}
+
+.markdown tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+
+
+/* Code block styling */
+.markdown pre {
+  background-color: #2d2d2d; /* Dark background for code blocks */
+  color: #000000; /* Light text color */
+  padding: 0.5em;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+  font-size: 0.9em;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  position: relative;
+}
+
+/* Code block line highlighting */
+.markdown pre code {
+  display: block;
+  line-height: 1.6;
+  white-space: pre;
+  color: inherit;
+}
+
+/* Inline code styling */
+.markdown code {
+  background-color: #f4f4f4;
+  color: #d14;
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+  font-size: 0.95em;
+}
+
+/* Custom scrollbar styling for code blocks */
+.markdown pre::-webkit-scrollbar {
+  height: 8px;
+}
+
+.markdown pre::-webkit-scrollbar-track {
+  background: #1e1e1e;
+  border-radius: 4px;
+}
+
+.markdown pre::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.markdown pre::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Syntax highlighting (simple example using colors for different token types) */
+.markdown .token.comment,
+.markdown .token.prolog,
+.markdown .token.doctype,
+.markdown .token.cdata {
+  color: #999;
+  font-style: italic;
+}
+
+.markdown .token.punctuation {
+  color: #f8f8f2;
+}
+
+.markdown .token.property,
+.markdown .token.tag,
+.markdown .token.boolean,
+.markdown .token.number,
+.markdown .token.constant,
+.markdown .token.symbol,
+.markdown .token.deleted {
+  color: #f92672;
+}
+
+.markdown .token.selector,
+.markdown .token.attr-name,
+.markdown .token.string,
+.markdown .token.char,
+.markdown .token.builtin,
+.markdown .token.inserted {
+  color: #a6e22e;
+}
+
+.markdown .token.operator,
+.markdown .token.entity,
+.markdown .token.url,
+.markdown .language-css .token.string,
+.markdown .style .token.string {
+  color: #66d9ef;
+}
+
+.markdown .token.atrule,
+.markdown .token.attr-value,
+.markdown .token.keyword {
+  color: #f92672;
+}
+
+.markdown .token.function,
+.markdown .token.class-name {
+  color: #e6db74;
+}
+
+.markdown .token.regex,
+.markdown .token.important,
+.markdown .token.variable {
+  color: #fd971f;
+}
+
+
+
+/* The button will be added after the code block */
+.markdown pre::after {
+  content: "Copy Code"; /* Text displayed in the button */
+  position: absolute;
+  top: 10px; /* Position it at the top-right of the code block */
+  right: 10px;
+  background-color: #2c3e50;
+  color: white;
+  padding: 6px 8px;
+  font-size: 0.6em;
+  border-radius: 4px;
+  cursor: pointer;
+  z-index: 1; /* Ensure it is above the code block */
+  transition: background-color 0.3s ease;
+}
+
+/* Styling for hover effect on the button */
+.markdown pre::after:hover {
+  background-color: #34495e;
+}
