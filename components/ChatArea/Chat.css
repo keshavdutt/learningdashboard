@@ -1,0 +1,132 @@
+/* Chat Container */
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    overflow: hidden;
+  }
+  
+  /* Message Container */
+  .messages-container {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 16px;
+  }
+  
+  /* Topic Styling */
+  .topic {
+    text-transform: uppercase;
+    color: #1a1a1a;
+    font-weight: bold;
+  }
+  
+  /* Messages Box */
+  .messages-box {
+    position: relative;
+    margin-top: 8px;
+    overflow-y: scroll;
+    border-radius: 8px;
+    border: 1px solid #c2c2c2;
+    background-color: #ffffff;
+    padding: 20px;
+  }
+  
+  /* Message List */
+  .message-list {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  
+  /* Assistant Message */
+  .assistant-message {
+    position: relative;
+    width: 100%;
+  }
+  
+  .assistant-logo {
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: 0;
+    width: 28px; /* Adjust size as needed */
+  }
+  
+  /* Message Content */
+  .message-content {
+    padding-left: 40px;
+  }
+  
+  /* User Message */
+  .user-message {
+    margin-left: auto;
+    padding: 16px;
+    background-color: #3b82f6;
+    border-radius: 12px;
+    color: white;
+    font-weight: 500;
+  }
+  
+  /* Loading Placeholder */
+  .loading-placeholder {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 20px 0;
+  }
+  
+  .loading-item {
+    height: 40px;
+    background-color: #e0e0e0;
+    border-radius: 8px;
+    animation: pulse 1s infinite;
+  }
+  
+  .loading-item.hidden {
+    display: none;
+  }
+  
+  /* Send Button */
+  .send-button {
+    background-color: #10b981;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+  }
+  
+  /* Copy Button */
+  .copy-button {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background-color: #fecaca;
+    color: #333;
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .copy-button:hover {
+    background-color: #34d399;
+  }
+  
+  /* Code Block */
+  .code-block {
+    background-color: #f3f4f6;
+    padding: 12px;
+    border-radius: 8px;
+  }
+  
+  .code-container {
+    position: relative;
+  }
+  
+  input-area {
+    background-color: white;
+    padding: 16px;
+  }
+  

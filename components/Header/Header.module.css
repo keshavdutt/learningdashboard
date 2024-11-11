@@ -1,0 +1,73 @@
+.header {
+    box-sizing: border-box;
+    background-color: #ffffff;
+    display: flex;
+    gap: 0.625rem;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border-light);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  
+  .logoLink {
+    display: flex;
+    color: var(--tg-neutral-fg);
+  }
+  
+  .navigationContainer {
+    display: flex;
+    align-items: center;
+    background-color: var(--tg-neutral-bg-raised);
+    border: 1px solid var(--tg-neutral-divider);
+    border-radius: 9999px;
+    padding: 6px;
+    gap: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .navGroup {
+    display: flex;
+    gap: 8px;
+  }
+  
+  .navigationButton {
+    padding: 7px 1rem;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    border: none;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 9999px;
+    background-color: transparent;
+    color: var(--tg-neutral-fg);
+    font-size: 14px;
+    transition: color 0.2s ease;
+  }
+  
+  .navigationButton:hover {
+    color: var(--tg-accent-contrast);
+  }
+  
+  .activeNavigationButton {
+    composes: navigationButton;
+    background-color: var(--tg-accent-muted);
+    /* color: var(--tg-accent-contrast); */
+    color: #ffffff;
+
+  }
+  
+  .profileCircle {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-image: url('https://via.placeholder.com/150'); /* Dummy avatar image */
+    background-size: cover; /* Ensure the image covers the entire circle */
+    background-position: center; /* Center the image */
+    margin-left: 8px;
+    background-color: white;
+  }

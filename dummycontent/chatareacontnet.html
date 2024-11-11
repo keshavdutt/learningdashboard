@@ -1,0 +1,100 @@
+<div className={`${styles.message} ${styles.userMessage}`}>
+    I'm curious to know more about sorting algorithms. Can you help?
+</div>
+<div className={`${styles.message} ${styles.botMessage}`}>
+    Absolutely! Sorting algorithms are fundamental in DSA. Would you like to learn about a specific one, or should I give an overview?
+</div>
+<div className={`${styles.message} ${styles.userMessage}`}>
+    An overview sounds great. Please go ahead.
+</div>
+<div className={`${styles.message} ${styles.botMessage}`}>
+    Alright! Sorting algorithms are used to arrange data in a particular order. The most common types are:
+    <ul>
+        <li>Bubble Sort</li>
+        <li>Merge Sort</li>
+        <li>Quick Sort</li>
+        <li>Insertion Sort</li>
+    </ul>
+</div>
+<div className={`${styles.message} ${styles.userMessage}`}>
+    Interesting! Can you explain how Bubble Sort works?
+</div>
+<div className={`${styles.message} ${styles.botMessage}`}>
+    Of course! In Bubble Sort, the list is repeatedly traversed, and adjacent elements are swapped if they are in the wrong order. This process repeats until no more swaps are needed. It's simple but not the most efficient for large datasets.
+</div>
+<div className={`${styles.message} ${styles.userMessage}`}>
+    That sounds simple enough. Is there a more efficient one?
+</div>
+<div className={`${styles.message} ${styles.botMessage}`}>
+    Yes, Merge Sort is more efficient for larger datasets. It's a divide-and-conquer algorithm. It divides the array into halves, recursively sorts them, and then merges the sorted halves back together.
+</div>
+<div className={`${styles.message} ${styles.userMessage}`}>
+    That seems better for large data. How does Quick Sort compare?
+</div>
+<div className={`${styles.message} ${styles.botMessage}`}>
+    Quick Sort is another divide-and-conquer algorithm. It selects a "pivot" element and partitions the array into two sub-arrays: one with elements less than the pivot, and one with elements greater than the pivot. It then recursively sorts the sub-arrays. Quick Sort is often faster than Merge Sort on average, though its worst-case time complexity is worse.
+</div>
+<div className={`${styles.message} ${styles.userMessage}`}>
+    So, which one is the fastest overall?
+</div>
+<div className={`${styles.message} ${styles.botMessage}`}>
+    Quick Sort is typically faster on average due to its smaller constant factors, but Merge Sort guarantees O(n log n) time complexity, while Quick Sort can degrade to O(n²) in the worst case. It depends on the dataset and the implementation.
+</div>
+<div className={`${styles.message} ${styles.userMessage}`}>
+    Got it! Is there a sorting algorithm for small data sets?
+</div>
+<div className={`${styles.message} ${styles.botMessage}`}>
+    Yes, Insertion Sort is often used for small datasets or nearly sorted data. It builds the sorted array one element at a time, inserting each element into its correct position. Its time complexity is O(n²), so it’s not efficient for large datasets, but it can perform well in specific situations.
+</div>
+<div className={`${styles.message} ${styles.userMessage}`}>
+    That makes sense. What other important data structures should I know about?
+</div>
+<div className={`${styles.message} ${styles.botMessage}`}>
+    Some of the most important ones are:
+    <ul>
+        <li>Arrays</li>
+        <li>Linked Lists</li>
+        <li>Stacks</li>
+        <li>Queues</li>
+        <li>Hash Tables</li>
+        <li>Heaps</li>
+        <li>Trees</li>
+        <li>Graphs</li>
+    </ul>
+</div>
+<div className={`${styles.message} ${styles.userMessage}`}>
+    Great! Can you tell me about Trees next?
+</div>
+<div className={`${styles.message} ${styles.botMessage}`}>
+    Sure! A tree is a hierarchical data structure consisting of nodes, with each node having a value and references to its child nodes. The top node is called the root, and the nodes with no children are called leaves. Trees are widely used in various algorithms, such as searching and sorting.
+</div>
+<div className={`${styles.message} ${styles.userMessage}`}>
+    That sounds useful! How does a Binary Search Tree (BST) work?
+</div>
+<div className={`${styles.message} ${styles.botMessage}`}>
+    A Binary Search Tree (BST) is a type of tree where each node has at most two children: a left child and a right child. For any node, all nodes in the left subtree have smaller values, and all nodes in the right subtree have larger values. This property makes BSTs ideal for searching, insertion, and deletion operations in O(log n) time, on average.
+</div>
+<div className={`${styles.message} ${styles.userMessage}`}>
+    That's pretty efficient. What about Graphs? How are they different?
+</div>
+<div className={`${styles.message} ${styles.botMessage}`}>
+    A graph is a collection of nodes (or vertices) and edges that connect pairs of nodes. Unlike trees, which are hierarchical, graphs can be cyclic or acyclic and can have directed or undirected edges. Graphs are used to represent relationships, such as in social networks or routing algorithms.
+</div>
+<div className={`${styles.message} ${styles.userMessage}`}>
+    I see! What about Hash Tables? How do they work?
+</div>
+<div className={`${styles.message} ${styles.botMessage}`}>
+    A Hash Table (or Hash Map) is a data structure that stores key-value pairs. It uses a hash function to compute an index (or hash code) where the value is stored. The main advantage of hash tables is fast access to values, as they can achieve O(1) average time complexity for search, insertion, and deletion operations.
+</div>
+<div className={`${styles.message} ${styles.userMessage}`}>
+    This is all very interesting! How do I get better at DSA?
+</div>
+<div className={`${styles.message} ${styles.botMessage}`}>
+    To get better at DSA, practice is key. Solve problems on platforms like LeetCode, HackerRank, or Codeforces. Focus on understanding the fundamentals, analyzing time and space complexities, and implementing algorithms from scratch. Keep learning and pushing yourself with more challenging problems!
+</div>
+<div className={`${styles.message} ${styles.userMessage}`}>
+    Thank you! I feel more confident now. I'll start practicing more.
+</div>
+<div className={`${styles.message} ${styles.botMessage}`}>
+    You're welcome! Keep up the great work, and don’t hesitate to ask if you have more questions. Happy coding!
+</div> 

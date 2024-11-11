@@ -1,95 +1,107 @@
+"use client"
+
 import Image from "next/image";
 import styles from "./page.module.css";
+import Header from "@/components/Header/Header";
+import Leftsidebar from "@/components/LeftSideBar/Leftsidebar";
+import ChatArea from "@/components/ChatArea/ChatArea";
+import PdfArea from "@/components/PdfArea/PdfArea";
+import { useState } from "react";
+
+import {
+  createParser,
+  ParsedEvent,
+  ReconnectInterval,
+} from "eventsource-parser";
 
 export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  // State to store the value of the input field
+  const [messages, setMessages] = useState<{ role: string; content: string }[]>(
+      []
+  ); 
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+  const handleChat = async (messages) => {
+    console.log('I got called up bro')
+      const chatRes = await fetch("/api/getChat", {
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ messages }),
+      });
+
+      if (!chatRes.ok) {
+          throw new Error(chatRes.statusText);
+      }
+
+      // This data is a ReadableStream
+      const data = chatRes.body;
+      console.log('This is the readable data', data)
+      if (!data) {
+          return;
+      }
+      let fullAnswer = "";
+
+      const onParse = (event: ParsedEvent | ReconnectInterval) => {
+          if (event.type === "event") {
+              const data = event.data;
+              try {
+                  const text = JSON.parse(data).text ?? "";
+                  fullAnswer += text;
+                  // Update messages with each chunk
+                  setMessages((prev) => {
+                      const lastMessage = prev[prev.length - 1];
+                      if (lastMessage.role === "assistant") {
+                          return [
+                              ...prev.slice(0, -1),
+                              { ...lastMessage, content: lastMessage.content + text },
+                          ];
+                      } else {
+                          return [...prev, { role: "assistant", content: text }];
+                      }
+                  });
+              } catch (e) {
+                  console.error('here', e);
+              }
+          }
+      };
+
+      const reader = data.getReader();
+      const decoder = new TextDecoder();
+      const parser = createParser(onParse);
+      let done = false;
+
+      while (!done) {
+          const { value, done: doneReading } = await reader.read();
+          done = doneReading;
+          const chunkValue = decoder.decode(value);
+          parser.feed(chunkValue);
+      }
+
+
+  };
+  // Function to handle Send button click
+  const handleSendClick = async () => {
+      console.log('Input value:', messages); // Log the input value
+
+      const initialMessage = [
+          { role: "system", content: 'You are a advanced llm model which can answer anything' },
+          { role: "user", content: `${messages}` },
+      ];
+      setMessages(initialMessage); // Optionally clear the input field after sending
+      await handleChat(initialMessage);
+
+  };
+
+
+
+  return (
+    <>
+      <Header />
+      <div className={styles.mainContainer}>
+        <ChatArea handleChat={handleChat} messages={messages} setMessages={setMessages}/>
+        <PdfArea />
+      </div>
+    </>
   );
 }
