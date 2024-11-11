@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef, KeyboardEvent } from 'react';
 import ReactMarkdown from "react-markdown";
 import styles from './ChatArea.module.css';
 
-const ChatArea = ({ handleChat, messages, setMessages }) => {
+const ChatArea = ({ handleChat, messages, setMessages, setCopiedText}) => {
     const messagesEndRef = useRef(null);
     const scrollableContainerRef = useRef(null);
     const chatAreaRef = useRef(null); // Reference for the chat area
@@ -75,7 +75,8 @@ const ChatArea = ({ handleChat, messages, setMessages }) => {
 
     const handleSendToNotes = () => {
         console.log('Sending to notes:', selectedText);
-        alert('Text sent to notes: ' + selectedText);
+        setCopiedText(selectedText)
+        // alert('Text sent to notes: ' + selectedText);
         setShowSendButton(false); // Hide the button after sending
     };
 

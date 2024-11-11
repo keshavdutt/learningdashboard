@@ -20,6 +20,9 @@ export default function Home() {
       []
   ); 
 
+
+  const [copiedText, setCopiedText] = useState('')
+
   const handleChat = async (messages) => {
     console.log('I got called up bro')
       const chatRes = await fetch("/api/getChat", {
@@ -99,8 +102,8 @@ export default function Home() {
     <>
       <Header />
       <div className={styles.mainContainer}>
-        <ChatArea handleChat={handleChat} messages={messages} setMessages={setMessages}/>
-        <PdfArea />
+        <ChatArea handleChat={handleChat} messages={messages} setMessages={setMessages} setCopiedText={setCopiedText}/>
+        <PdfArea copiedText={copiedText} />
       </div>
     </>
   );
