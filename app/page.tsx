@@ -1,110 +1,86 @@
 "use client"
 
-import Image from "next/image";
-import styles from "./page.module.css";
-import Header from "@/components/Header/Header";
-import Leftsidebar from "@/components/LeftSideBar/Leftsidebar";
-import ChatArea from "@/components/ChatArea/ChatArea";
-import PdfArea from "@/components/PdfArea/PdfArea";
-import { useState } from "react";
-
-import {
-  createParser,
-  ParsedEvent,
-  ReconnectInterval,
-} from "eventsource-parser";
+import HomeHeader from '@/components/Homeheader/HomeHeader'
+import React from 'react'
+import styles from './page.module.css'
 
 export default function Home() {
-  // State to store the value of the input field
-  const [messages, setMessages] = useState<{ role: string; content: string }[]>(
-      []
-  ); 
-
-
-  const [copiedText, setCopiedText] = useState('')
-
-  const handleChat = async (messages) => {
-    console.log('I got called up bro')
-      const chatRes = await fetch("/api/getChat", {
-          method: "POST",
-          headers: {
-              "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ messages }),
-      });
-
-      if (!chatRes.ok) {
-          throw new Error(chatRes.statusText);
-      }
-
-      // This data is a ReadableStream
-      const data = chatRes.body;
-      console.log('This is the readable data', data)
-      if (!data) {
-          return;
-      }
-      let fullAnswer = "";
-
-      const onParse = (event: ParsedEvent | ReconnectInterval) => {
-          if (event.type === "event") {
-              const data = event.data;
-              try {
-                  const text = JSON.parse(data).text ?? "";
-                  fullAnswer += text;
-                  // Update messages with each chunk
-                  setMessages((prev) => {
-                      const lastMessage = prev[prev.length - 1];
-                      if (lastMessage.role === "assistant") {
-                          return [
-                              ...prev.slice(0, -1),
-                              { ...lastMessage, content: lastMessage.content + text },
-                          ];
-                      } else {
-                          return [...prev, { role: "assistant", content: text }];
-                      }
-                  });
-              } catch (e) {
-                  console.error('here', e);
-              }
-          }
-      };
-
-      const reader = data.getReader();
-      const decoder = new TextDecoder();
-      const parser = createParser(onParse);
-      let done = false;
-
-      while (!done) {
-          const { value, done: doneReading } = await reader.read();
-          done = doneReading;
-          const chunkValue = decoder.decode(value);
-          parser.feed(chunkValue);
-      }
-
-
-  };
-  // Function to handle Send button click
-  const handleSendClick = async () => {
-      console.log('Input value:', messages); // Log the input value
-
-      const initialMessage = [
-          { role: "system", content: 'You are a advanced llm model which can answer anything' },
-          { role: "user", content: `${messages}` },
-      ];
-      setMessages(initialMessage); // Optionally clear the input field after sending
-      await handleChat(initialMessage);
-
-  };
-
-
-
   return (
     <>
-      <Header />
-      <div className={styles.mainContainer}>
-        <ChatArea handleChat={handleChat} messages={messages} setMessages={setMessages} setCopiedText={setCopiedText}/>
-        <PdfArea copiedText={copiedText} />
-      </div>
+      <HomeHeader />
+      <main className={styles.mainContent}>
+        {/* Hero Section */}
+        <section className={styles.heroSection}>
+          <h1>Welcome to PlanoEducation</h1>
+          <p>Your AI-powered platform for customized, personalized learning and real-time note-taking.</p>
+          <button className={styles.ctaButton}>Get Started</button>
+        </section>
+
+      {/* Features Section */}
+      <section className={styles.featuresSection}>
+          <h2>Features Designed to Empower Your Learning Journey</h2>
+          <div className={styles.featuresGrid}>
+            <div className={styles.feature}>
+              <h3>Personalized Learning Roadmap</h3>
+              <p>AI-curated learning paths tailored to your goals, guiding you through skill mastery.</p>
+            </div>
+            <div className={styles.feature}>
+              <h3>Real-Time Note-Making</h3>
+              <p>Seamlessly integrate note-taking with your learning path, organized and accessible.</p>
+            </div>
+            <div className={styles.feature}>
+              <h3>Progress Tracking & Milestones</h3>
+              <p>Visual progress trackers that adapt to your pace and celebrate your achievements.</p>
+            </div>
+
+          </div>
+        </section>
+
+        {/* Infographic Section */}
+        <section className={styles.infographicSection}>
+          <h2>Why Choose PlanoEducation?</h2>
+          <div className={styles.infographic}>
+            <div className={styles.infographicItem}>
+              <h4>Customized Plans</h4>
+              <p>Our AI crafts a unique roadmap based on your strengths and interests.</p>
+            </div>
+            <div className={styles.infographicItem}>
+              <h4>Real-Time Insights</h4>
+              <p>Instant recommendations that adapt as you progress and learn.</p>
+            </div>
+            <div className={styles.infographicItem}>
+              <h4>Progress Transparency</h4>
+              <p>Get real-time visibility on your learning milestones and achievements.</p>
+            </div>
+          </div>
+        </section>
+
+        {/* Review Section */}
+        <section className={styles.reviewSection}>
+          <h2>What Our Users Are Saying</h2>
+          <div className={styles.reviewCards}>
+            <div className={styles.reviewCard}>
+              <p>“PlanoEducation has redefined the way I learn. The personalized roadmap is a game changer!”</p>
+              <span>- Alex P., Student</span>
+            </div>
+            <div className={styles.reviewCard}>
+              <p>“I love the real-time note-taking feature. It’s perfect for capturing ideas and thoughts seamlessly.”</p>
+              <span>- Jamie L., Professional</span>
+            </div>
+            <div className={styles.reviewCard}>
+              <p>“The AI-powered content suggestions keep me engaged and motivated every step of the way.”</p>
+              <span>- Taylor M., Developer</span>
+            </div>
+          </div>
+        </section>
+
+        {/* Call to Action */}
+        <section className={styles.finalCallToAction}>
+          <h2>Join Thousands of Learners</h2>
+          <p>Experience a new way to learn, tailored to your goals and interests. Start your journey with PlanoEducation today!</p>
+          <button className={styles.startButton}>Sign Up Now</button>
+        </section>
+      </main>
     </>
-  );
+  )
 }

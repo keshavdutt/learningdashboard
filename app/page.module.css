@@ -1,5 +1,187 @@
-.mainContainer {
+/* .mainContainer {
   padding: 1rem 1.5rem;
   display: flex;
   gap: 20px;
+} */
+
+
+/* Home.module.css */
+
+.mainContent {
+  padding: 2rem;
+  font-family: Arial, sans-serif;
+  color: #333;
+  text-align: center;
 }
+
+/* Hero Section */
+.heroSection {
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  color: white;
+  padding: 4rem 2rem;
+  border-radius: 10px;
+  margin-bottom: 3rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.ctaButton {
+  margin-top: 1.5rem;
+  padding: 0.75rem 2rem;
+  background-color: #ffffff;
+  color: #2575fc;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.ctaButton:hover {
+  background-color: #2575fc;
+  color: #ffffff;
+}
+
+/* Features Section */
+.featuresSection {
+  margin: 3rem 0;
+}
+
+.featuresSection h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Feature Cards Grid */
+.featuresGrid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.feature {
+  background: #f9f9f9;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.feature:hover {
+  transform: translateY(-5px);
+}
+
+.feature h3 {
+  color: #2575fc;
+  margin-bottom: 0.5rem;
+}
+
+.feature p {
+  color: #555;
+}
+
+/* Infographic Section */
+.infographicSection {
+  margin: 3rem 0;
+  padding: 2rem;
+  background: #f3f6f9;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.infographicSection h2 {
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 1.5rem;
+}
+
+.infographic {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+.infographicItem {
+  background: #ffffff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 300px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.infographicItem:hover {
+  transform: translateY(-5px);
+}
+
+.infographicItem h4 {
+  font-size: 1.2rem;
+  color: #2575fc;
+  margin-bottom: 0.5rem;
+}
+
+.infographicItem p {
+  color: #555;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+
+/* Review Section */
+.reviewSection {
+  padding: 3rem 2rem;
+}
+
+.reviewCards {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.reviewCard {
+  background: #ffffff;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 280px;
+  text-align: left;
+}
+
+.reviewCard span {
+  display: block;
+  margin-top: 0.5rem;
+  font-weight: bold;
+  color: #666;
+}
+
+/* Final Call to Action */
+.finalCallToAction {
+  background: #2575fc;
+  color: white;
+  padding: 3rem 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  margin: 3rem 0;
+}
+
+.startButton {
+  margin-top: 1rem;
+  padding: 0.75rem 2rem;
+  background-color: #ffffff;
+  color: #2575fc;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.startButton:hover {
+  background-color: #ffffff;
+  color: #2575fc;
+}
+

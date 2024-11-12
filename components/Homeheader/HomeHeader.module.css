@@ -71,29 +71,3 @@
     margin-left: 8px;
     background-color: white;
   }
-
-
-  /* Active Indicator (Sliding animation) */
-.activeIndicator {
-  position: absolute;
-  bottom: 0;
-  height: 2px;
-  background-color: #0070f3;
-  transition: all 0.3s ease;
-}
-
-/* Indicator positions for different buttons */
-.indicator-dashboard {
-  left: 0;
-  width: 33.33%; /* Assuming 3 buttons, adjust as needed */
-}
-
-.indicator-workspace {
-  left: 33.33%; /* Middle button */
-  width: 33.33%;
-}
-
-.indicator-notes {
-  left: 66.66%; /* Last button */
-  width: 33.33%;
-}

@@ -14,7 +14,7 @@ import {
   ReconnectInterval,
 } from "eventsource-parser";
 
-export default function Dashboard() {
+export default function Workspace() {
   // State to store the value of the input field
   const [messages, setMessages] = useState<{ role: string; content: string }[]>(
       []
@@ -102,8 +102,7 @@ export default function Dashboard() {
     <>
       <Header />
       <div className={styles.mainContainer}>
-        <ChatArea handleChat={handleChat} messages={messages} setMessages={setMessages} setCopiedText={setCopiedText}/>
-        <PdfArea copiedText={copiedText} />
+
       </div>
     </>
   );

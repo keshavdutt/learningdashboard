@@ -1,0 +1,5 @@
+.mainContainer {
+    padding: 1rem 1.5rem;
+    display: flex;
+    gap: 20px;
+  }
