@@ -5,6 +5,8 @@ import React from 'react'
 import styles from './page.module.css'
 
 export default function Home() {
+
+
   return (
     <>
       <HomeHeader />
@@ -16,8 +18,8 @@ export default function Home() {
           <button className={styles.ctaButton}>Get Started</button>
         </section>
 
-      {/* Features Section */}
-      <section className={styles.featuresSection}>
+        {/* Features Section */}
+        <section className={styles.featuresSection}>
           <h2>Features Designed to Empower Your Learning Journey</h2>
           <div className={styles.featuresGrid}>
             <div className={styles.feature}>

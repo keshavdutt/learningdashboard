@@ -108,3 +108,80 @@
 .ql-container {
     border-radius: 0 0 4px 4px; /* Rounded bottom corners for the editor */
 }
+
+/* modal code css */
+
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modalContent {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 300px;
+  }
+  
+  .titleInput {
+    width: 100%;
+    padding: 8px;
+    margin-top: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+  
+  .saveButton, .cancelButton {
+    margin-top: 15px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .saveButton {
+    background-color: #4CAF50;
+    color: white;
+    margin-right: 8px;
+  }
+  
+  .cancelButton {
+    background-color: #f44336;
+    color: white;
+  }
+  
+
+  .placeholderContainer {
+    text-align: center;
+    padding: 50px;
+    background-color: #f7f7f7;
+    border-radius: 8px;
+    border: 1px dashed #ccc;
+    /* margin-top: 20px; */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .placeholderImage {
+    /* width: 150px; */
+    height: auto;
+    margin-bottom: 20px;
+  }
+  
+  .placeholderText {
+    font-size: 1.1em;
+    color: #555;
+  }
+  

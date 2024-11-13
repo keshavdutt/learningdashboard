@@ -1,5 +1,60 @@
-.mainContainer {
+  /* .mainContainer {
     padding: 1rem 1.5rem;
     display: flex;
     gap: 20px;
+  } */
+
+  .mainContainer {
+    padding: 20px;
   }
+  
+  .header {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .notesGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+  }
+  
+  .noteCard {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    transition: box-shadow 0.2s ease;
+    cursor: pointer;
+  }
+
+  .noteContent {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #333333;
+  }
+  
+  .noteCard:hover {
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .noteTitle {
+    font-size: 1.2em;
+    font-weight: 500;
+    margin: 0 0 8px;
+    color: #333;
+  }
+  
+  .notePreview {
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 10px;
+  }
+  
+  .noteDate {
+    font-size: 0.8em;
+    color: #999;
+  }
+  
+  

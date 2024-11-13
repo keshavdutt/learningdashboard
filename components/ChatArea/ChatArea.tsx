@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef, KeyboardEvent } from 'react';
 import ReactMarkdown from "react-markdown";
 import styles from './ChatArea.module.css';
 
-const ChatArea = ({ handleChat, messages, setMessages, setCopiedText}) => {
+const ChatArea = ({ handleChat, messages, setMessages, setCopiedText }) => {
     const messagesEndRef = useRef(null);
     const scrollableContainerRef = useRef(null);
     const chatAreaRef = useRef(null); // Reference for the chat area
@@ -13,6 +13,9 @@ const ChatArea = ({ handleChat, messages, setMessages, setCopiedText}) => {
     const [showSendButton, setShowSendButton] = useState(false);
     const [inputValue, setInputValue] = useState("");
     const [buttonPosition, setButtonPosition] = useState({ top: 0, left: 0 });
+
+    // set placeholder content
+    const [initialText, setInitialText] = useState('Ask Something')
 
     // Scroll to the bottom of the chat on new message
     function scrollToBottom() {
@@ -74,7 +77,6 @@ const ChatArea = ({ handleChat, messages, setMessages, setCopiedText}) => {
     }, []);
 
     const handleSendToNotes = () => {
-        console.log('Sending to notes:', selectedText);
         setCopiedText(selectedText)
         // alert('Text sent to notes: ' + selectedText);
         setShowSendButton(false); // Hide the button after sending
@@ -82,6 +84,7 @@ const ChatArea = ({ handleChat, messages, setMessages, setCopiedText}) => {
 
     // Handle textarea input and send message
     const handleKeyDown = (e: KeyboardEvent<HTMLTextAreaElement>) => {
+        setInitialText('Follow up question')
         if (e.key === "Enter") {
             if (e.shiftKey) {
                 return;
@@ -104,8 +107,35 @@ const ChatArea = ({ handleChat, messages, setMessages, setCopiedText}) => {
             <div className={styles.chatContainer}>
                 {/* Chat Messages Area */}
                 <div className={styles.chatMessages}>
-                    <div>
-                        {messages.map((message, index) =>
+                    <div style={{height: '100%'}}>
+                        {/* For showing the temp content */}
+                        {messages.length > 0 ? (
+                            <>
+                                {
+                                    messages.map((message, index) =>
+                                        message.role === "assistant" ? (
+                                            <div key={index}>
+                                                <ReactMarkdown className={[styles.botMessage, styles.message, styles.markdown].join(" ")}>
+                                                    {message.content}
+                                                </ReactMarkdown>
+                                            </div>
+                                        ) : (
+                                            <p key={index} className={[styles.userMessage, styles.message].join(" ")}>
+                                                {message.content}
+                                            </p>
+                                        )
+                                    )
+                                }
+                            </>
+                        ) : (
+                            <div className={styles.placeholderContainer}>
+
+                                <p className={styles.placeholderText}>
+                                    Ask the Questions to start Learning
+                                </p>
+                            </div>
+                        )}
+                        {/* {messages.map((message, index) =>
                             message.role === "assistant" ? (
                                 <div key={index}>
                                     <ReactMarkdown className={[styles.botMessage, styles.message, styles.markdown].join(" ")}>
@@ -117,7 +147,7 @@ const ChatArea = ({ handleChat, messages, setMessages, setCopiedText}) => {
                                     {message.content}
                                 </p>
                             )
-                        )}
+                        )} */}
                         <div ref={messagesEndRef} />
                     </div>
                 </div>
@@ -125,7 +155,7 @@ const ChatArea = ({ handleChat, messages, setMessages, setCopiedText}) => {
                 {/* Typing Area */}
                 <div className={styles.typingArea}>
                     <textarea
-                        placeholder="Follow up question"
+                        placeholder={initialText}
                         className={styles.inputField}
                         value={inputValue}
                         onKeyDown={handleKeyDown}

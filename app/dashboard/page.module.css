@@ -1,5 +1,37 @@
 .mainContainer {
-    padding: 1rem 1.5rem;
-    display: flex;
-    gap: 20px;
-  }
+  padding: 1rem 1.5rem;
+  display: flex;
+  gap: 20px;
+}
+
+.sidebarContainer {
+  border: solid 1px black;
+  background-color: white;
+  border-radius: 15px;
+  width: 250px;
+  padding: 1rem;
+}
+
+.noteCard {
+  padding: 0.5rem;
+  border-bottom: solid 1px black;
+
+}
+
+.noteCard:hover {
+  background-color: gray;
+  transition: 500ms;
+  border: none;
+}
+
+.noteTitle {
+  font-size: 16px;
+}
+
+.sidebarTitle {
+  font-weight: 500;
+  font-size: medium;
+  margin-bottom: 8px;
+  border-bottom: solid;
+  line-height: 40px;
+}
