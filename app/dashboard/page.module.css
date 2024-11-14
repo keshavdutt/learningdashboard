@@ -35,3 +35,9 @@
   border-bottom: solid;
   line-height: 40px;
 }
+
+.swapButton {
+  margin: 10px;
+  padding: 8px 16px;
+  cursor: pointer;
+}

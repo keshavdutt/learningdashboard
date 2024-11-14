@@ -16,6 +16,8 @@ import {
 
 export default function Dashboard() {
 
+    const [isSwapped, setIsSwapped] = useState(false);
+
 
     const [notes, setNotes] = useState([]);
 
@@ -107,6 +109,11 @@ export default function Dashboard() {
 
     };
 
+    // Function to toggle the swap state
+    const toggleSwap = () => {
+        setIsSwapped((prev) => !prev);
+    };
+
 
 
     return (
@@ -114,15 +121,27 @@ export default function Dashboard() {
             <Header />
             <div className={styles.mainContainer}>
                 <div className={styles.sidebarContainer}>
-                <p className={styles.sidebarTitle}>Previous Conversation</p>
-                {notes.map((note, index) => (
+                    <p className={styles.sidebarTitle}>Previous Conversation</p>
+                    <button onClick={toggleSwap} className={styles.swapButton}>
+                    Swap Chat and PDF Areas
+                </button>
+                    {notes.map((note, index) => (
                         <div className={styles.noteCard} key={index}>
                             <p className={styles.noteTitle}>{note.title || "Untitled"}</p>
                         </div>
                     ))}
                 </div>
-                <ChatArea handleChat={handleChat} messages={messages} setMessages={setMessages} setCopiedText={setCopiedText} />
-                <PdfArea copiedText={copiedText} />
+                {isSwapped ? (
+                        <>
+                            <ChatArea handleChat={handleChat} messages={messages} setMessages={setMessages} setCopiedText={setCopiedText} />
+                            <PdfArea copiedText={copiedText} />
+                        </>
+                    ) : (
+                        <>
+                            <PdfArea copiedText={copiedText} />
+                            <ChatArea handleChat={handleChat} messages={messages} setMessages={setMessages} setCopiedText={setCopiedText} />
+                        </>
+                    )}
             </div>
         </>
     );

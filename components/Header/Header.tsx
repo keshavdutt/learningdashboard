@@ -19,7 +19,7 @@ export default function Header() {
     return (
         <div className={styles.header}>
             <a className={styles.logoLink} data-testid="together-logo-link" data-cy="together-logo-link" href="/">
-                <strong>Planoeducation</strong>
+                <strong>Learning Engine</strong>
             </a>
 
             <div className={styles.navigationContainer}>
