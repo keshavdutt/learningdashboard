@@ -18,12 +18,34 @@ export default function Dashboard() {
 
     const [isSwapped, setIsSwapped] = useState(false);
 
+    const [selectedNoteContent, setSelectedNoteContent] = useState(""); // Add state for selected note content
+
+
 
     const [notes, setNotes] = useState([]);
 
-    useEffect(() => {
+    // useEffect(() => {
+    //     const savedNotes = JSON.parse(localStorage.getItem("savedNotes")) || [];
+    //     setNotes(savedNotes);
+    // }, []);
+
+    // Function to load notes from localStorage
+    const loadNotesFromStorage = () => {
         const savedNotes = JSON.parse(localStorage.getItem("savedNotes")) || [];
         setNotes(savedNotes);
+    };
+
+    useEffect(() => {
+        // Initial load of notes
+        loadNotesFromStorage();
+
+        // Set up a polling interval to check for changes in localStorage
+        const intervalId = setInterval(() => {
+            loadNotesFromStorage();
+        }, 1000); // Check every second (adjust as needed)
+
+        // Clear interval when component unmounts
+        return () => clearInterval(intervalId);
     }, []);
 
 
@@ -109,6 +131,11 @@ export default function Dashboard() {
 
     };
 
+    const handleNoteClick = (noteContent) => {
+        console.log('kdsds', noteContent)
+        setSelectedNoteContent(noteContent); // Set the clicked note's content
+    };
+
     // Function to toggle the swap state
     const toggleSwap = () => {
         setIsSwapped((prev) => !prev);
@@ -123,25 +150,25 @@ export default function Dashboard() {
                 <div className={styles.sidebarContainer}>
                     <p className={styles.sidebarTitle}>Previous Conversation</p>
                     <button onClick={toggleSwap} className={styles.swapButton}>
-                    Swap Chat and PDF Areas
-                </button>
+                        Swap Chat and PDF Areas
+                    </button>
                     {notes.map((note, index) => (
-                        <div className={styles.noteCard} key={index}>
+                        <div className={styles.noteCard} key={index} onClick={() => handleNoteClick(note.content)}>
                             <p className={styles.noteTitle}>{note.title || "Untitled"}</p>
                         </div>
                     ))}
                 </div>
                 {isSwapped ? (
-                        <>
-                            <ChatArea handleChat={handleChat} messages={messages} setMessages={setMessages} setCopiedText={setCopiedText} />
-                            <PdfArea copiedText={copiedText} />
-                        </>
-                    ) : (
-                        <>
-                            <PdfArea copiedText={copiedText} />
-                            <ChatArea handleChat={handleChat} messages={messages} setMessages={setMessages} setCopiedText={setCopiedText} />
-                        </>
-                    )}
+                    <>
+                        <ChatArea handleChat={handleChat} messages={messages} setMessages={setMessages} setCopiedText={setCopiedText} />
+                        <PdfArea content={selectedNoteContent} copiedText={copiedText} />
+                    </>
+                ) : (
+                    <>
+                        <PdfArea content={selectedNoteContent} copiedText={copiedText} />
+                        <ChatArea handleChat={handleChat} messages={messages} setMessages={setMessages} setCopiedText={setCopiedText} />
+                    </>
+                )}
             </div>
         </>
     );
